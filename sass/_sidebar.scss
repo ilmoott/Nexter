@@ -3,8 +3,9 @@
     grid-column: sidebar-start / sidebar-end;
     grid-row: 1/-1;
     position: relative;
+    width: 100%;
 
-    display: flex;
+    display: block;
     justify-content: center;
 
     @media only screen and (max-width: $bp-large) {
@@ -13,55 +14,6 @@
         justify-content: flex-end;
         align-items: center;
     }
-
-    
-}
-
-.nav-btn{
-    border-radius: 0;
-    border: none;
-
-    background-color: #fff;
-    height: 2px;
-    width: 4.5rem;
-    margin-top: 4rem;
-    cursor: pointer;
-
-    &::before,
-    &::after{
-        content: "";
-        display: block;
-        background-color: #fff;
-        height: 2px;
-        width: 4.5rem;
-        cursor: pointer;
-    }
-
-    &::before{
-        transform: translateY(-1.5rem);
-    }
-
-    &::after{
-        transform: translateY(1.3rem);
-    }
-
-    @media only screen and (max-width: $bp-large) {
-        margin-top: 0;
-        margin-right: 3rem;
-
-        &::before{
-            transform: translateY(-1.2rem);
-        }
-    
-        &::after{
-            transform: translateY(1rem);
-        }
-    }
-}
-
-
-.nav{
-    transition: all 1s;
 
     &__check{
         display: none;
@@ -114,68 +66,119 @@
         }
     }
 
-    &__menu{
-        width: 100%;
-        height: 100%;
-        background-color: $color-primary;
-        display: none;
-        transition: all 1s;
-    }
 
+    //MENU STYLING
     &__list{
         display: none;
-        transition: all .4s;
+        width: 20rem;
+        height: 100%;
+        background-color: $color-primary;
         list-style: none;
-        width: 30rem;
-        padding: 5rem;
-        padding-left: 12rem;
+        padding: 2rem;
+        text-decoration: none;
+
+        @media only screen and (max-width:$bp-large) {
+            width: 100%;
+            height: 10rem;
+        }
+
+        @media only screen and (max-width:62.5em ) {
+            padding: 0.5rem;
+        }
     }
 
     &__item{
+        padding: 1rem;
         width: 100%;
-        margin-right: 5rem;
+        text-align: center;
 
         &:hover{
             border-bottom: 1px solid $color-secondary;
-            color: $color-secondary;
+            background-color: rgba(black, .04);
+        }
+
+        &:first-child{
+            margin-top: 15rem;
+        }
+
+        @media only screen and (min-width:62.5em ) {
+            margin-top: 4rem;
         }
     }
 
-    &__item:hover > &__link{
-        color: $color-secondary;
-    }
 
+    //LINK STYLING
+    &__link,
     &__link:link,
     &__link:active{
         text-decoration: none;
+        width: 100%;
+        color: white;
+        font-size: 1.8rem;
 
     }
 
-    &__check:checked ~ &__menu{
-        display: block;
-        transform: scaleY(3.5) scaleX(1.1);
-
-        @media only screen and (min-width:62.5em ) {
-            transform: scaleX(6);
-        }
-        
-    }
-
-    
+      
 
     &__check:checked ~ &__list{
         display: flex;
         position: absolute;
-        top: 2rem;
-        right: 15rem;
-        justify-content: center;
+        width: 100%;
+        justify-content: flex-end;    
+        align-items: flex-end;
 
         @media only screen and (min-width:62.5em ) {
-            flex-direction: column;
             position: fixed;
-            top: 20rem;
-            right: auto;
-            
+            flex-direction: column;
+            width: 15rem;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+    }
+
+    
+}
+
+.nav-btn{
+    border-radius: 0;
+    border: none;
+
+    background-color: #fff;
+    height: 2px;
+    width: 4.5rem;
+    margin-top: 4rem;
+    cursor: pointer;
+    z-index: 10;
+
+    &::before,
+    &::after{
+        content: "";
+        display: block;
+        background-color: #fff;
+        height: 2px;
+        width: 4.5rem;
+        cursor: pointer;
+    }
+
+    &::before{
+        transform: translateY(-1.5rem);
+    }
+
+    &::after{
+        transform: translateY(1.3rem);
+    }
+
+    @media only screen and (max-width: $bp-large) {
+        margin-top: 0;
+        margin-right: 3rem;
+
+        &::before{
+            transform: translateY(-1.2rem);
+        }
+    
+        &::after{
+            transform: translateY(1rem);
         }
     }
 }
+
