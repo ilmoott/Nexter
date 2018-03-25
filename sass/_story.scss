@@ -9,12 +9,17 @@
         grid-template-columns: repeat(6, 1fr);
         align-items: center;
 
-        background-image: linear-gradient(rgba($color-primary,.5), rgba($color-primary,.5)), url(../img/back.jpg);
+        background-image: linear-gradient(rgba($color-primary,.5), rgba($color-primary,.5)), url(../img/back-small.jpg);
         background-size: cover;
 
         @media only screen and (max-width: $bp-medium){
             grid-column: 1/-1;
             padding: 3rem;
+        }
+
+        @media only screen and (min-width: $bp-large),
+                                (min-resolution: 192dpi) and (min-width:50em){
+            background-image: linear-gradient(rgba($color-primary,.5), rgba($color-primary,.5)), url(../img/back.jpg);
         }
         
     }
@@ -37,10 +42,16 @@
         grid-column: 4/7;
         z-index: 20;
         box-shadow: 0 2rem 5rem rgba(#000,.2);
+        transition: all .3s;
+        backface-visibility: hidden;
 
         @media only screen and (max-width: $bp-medium){
             grid-row: 1/-1;
             width: 100%;
+        }
+
+        &:hover{
+            transform: scale(1.1);
         }
     }
 

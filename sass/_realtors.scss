@@ -16,7 +16,7 @@
 
     &__list{
         display: grid;
-        grid-template-columns: min-content max-content;
+        grid-template-columns: max-content;
         grid-column-gap: 2rem;
         grid-row-gap: 5vh;
         align-items: center;
@@ -28,10 +28,30 @@
         @media only screen and (max-width: $bp-small){
             grid-template-columns: min-content max-content;
         }
+
+        
+    }
+
+    &__card{
+        display: grid;
+        grid-template-columns: min-content max-content;
+        align-items: center;
+        grid-gap: 1rem;
+        transition: all .3s;
+        background-image: linear-gradient(120deg,transparent 0%,transparent 85%, rgba(white,0.2) 15%);
+        background-size: 750%;
+
+        &:hover,
+        &:active{
+            
+            transform: translateX(-5px);
+            background-position: 100%;
+        }
     }
 
     &__img{
         width: 7rem;
+        height: 7rem;
         border-radius: 50%;
         display: block;
     }
@@ -40,4 +60,5 @@
         color: $color-grey-light-2;
         margin-top: -3px;
     }
+    
 }

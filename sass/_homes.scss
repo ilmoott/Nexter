@@ -16,6 +16,8 @@
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-row-gap: 3.5rem;
+    transition: all .2s;
+    backface-visibility: hidden;
 
     &__img{
         width: 100%;
@@ -83,6 +85,10 @@
 
     &__btn{
         grid-column: 1/-1;
+    }
+
+    &:hover{
+        transform: scale(1.02);
     }
 
 }

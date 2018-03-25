@@ -72,7 +72,12 @@ body {
   cursor: pointer;
   transition: all .2s; }
   .btn:hover {
-    background-color: #B28451; }
+    background-color: #B28451;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px); }
+  .btn:active {
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+    transform: translateY(1px); }
 
 .mb-sm {
   margin-bottom: 2rem; }
@@ -90,6 +95,7 @@ body {
   background-color: #c69963;
   grid-column: sidebar-start / sidebar-end;
   grid-row: 1/-1;
+  position: relative;
   display: flex;
   justify-content: center; }
   @media only screen and (max-width: 62.5em) {
@@ -127,10 +133,86 @@ body {
       .nav-btn::after {
         transform: translateY(1rem); } }
 
+.nav {
+  transition: all 1s; }
+  .nav__check {
+    display: none; }
+  .nav__btn {
+    height: 6rem;
+    width: 7rem;
+    background-color: #c69963;
+    cursor: pointer;
+    z-index: 11; }
+  .nav__icon, .nav:before, .nav:after {
+    height: 2px;
+    width: 4rem;
+    background-color: white;
+    position: fixed;
+    top: 3rem;
+    right: 3rem;
+    z-index: 12; }
+    @media only screen and (min-width: 62.5em) {
+      .nav__icon, .nav:before, .nav:after {
+        left: 2rem; } }
+  .nav::before, .nav::after {
+    content: "";
+    position: fixed; }
+  .nav::before {
+    top: 2rem; }
+    @media only screen and (min-width: 62.5em) {
+      .nav::before {
+        left: 2rem; } }
+  .nav::after {
+    top: 4rem; }
+    @media only screen and (min-width: 62.5em) {
+      .nav::after {
+        left: 2rem; } }
+  .nav__menu {
+    width: 100%;
+    height: 100%;
+    background-color: #c69963;
+    display: none;
+    transition: all 1s; }
+  .nav__list {
+    display: none;
+    transition: all .4s;
+    list-style: none;
+    width: 30rem;
+    padding: 5rem;
+    padding-left: 12rem; }
+  .nav__item {
+    width: 100%;
+    margin-right: 5rem; }
+    .nav__item:hover {
+      border-bottom: 1px solid #101d2c;
+      color: #101d2c; }
+  .nav__item:hover > .nav__link {
+    color: #101d2c; }
+  .nav__link:link, .nav__link:active {
+    text-decoration: none; }
+  .nav__check:checked ~ .nav__menu {
+    display: block;
+    transform: scaleY(3.5) scaleX(1.1); }
+    @media only screen and (min-width: 62.5em) {
+      .nav__check:checked ~ .nav__menu {
+        transform: scaleX(6); } }
+  .nav__check:checked ~ .nav__list {
+    display: flex;
+    position: absolute;
+    top: 2rem;
+    right: 15rem;
+    justify-content: center; }
+    @media only screen and (min-width: 62.5em) {
+      .nav__check:checked ~ .nav__list {
+        flex-direction: column;
+        position: fixed;
+        top: 20rem;
+        right: auto; } }
+
 .header {
   background-color: #54483A;
   grid-column: full-start/col-end 6;
-  background-image: linear-gradient(rgba(16, 29, 44, 0.93), rgba(16, 29, 44, 0.93)), url(../img/hero.jpeg);
+  background-image: linear-gradient(rgba(16, 29, 44, 0.93), rgba(16, 29, 44, 0.93)), url(../img/hero-small.jpg);
   background-size: cover;
   background-position: center;
   padding: 8rem;
@@ -146,6 +228,9 @@ body {
   @media only screen and (max-width: 37.5em) {
     .header {
       padding: 5rem; } }
+  @media only screen and (min-width: 62.5em), (min-resolution: 192dpi) and (min-width: 50em) {
+    .header {
+      background-image: linear-gradient(rgba(16, 29, 44, 0.93), rgba(16, 29, 44, 0.93)), url(../img/hero.jpeg); } }
   .header__logo {
     height: 3rem;
     justify-self: center; }
@@ -189,7 +274,7 @@ body {
       grid-column: 1 /-1; } }
   .realtors__list {
     display: grid;
-    grid-template-columns: min-content max-content;
+    grid-template-columns: max-content;
     grid-column-gap: 2rem;
     grid-row-gap: 5vh;
     align-items: center; }
@@ -199,8 +284,20 @@ body {
     @media only screen and (max-width: 37.5em) {
       .realtors__list {
         grid-template-columns: min-content max-content; } }
+  .realtors__card {
+    display: grid;
+    grid-template-columns: min-content max-content;
+    align-items: center;
+    grid-gap: 1rem;
+    transition: all .3s;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 85%, rgba(255, 255, 255, 0.2) 15%);
+    background-size: 750%; }
+    .realtors__card:hover, .realtors__card:active {
+      transform: translateX(-5px);
+      background-position: 100%; }
   .realtors__img {
     width: 7rem;
+    height: 7rem;
     border-radius: 50%;
     display: block; }
   .realtors__sold {
@@ -237,12 +334,15 @@ body {
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(6, 1fr);
   align-items: center;
-  background-image: linear-gradient(rgba(198, 153, 99, 0.5), rgba(198, 153, 99, 0.5)), url(../img/back.jpg);
+  background-image: linear-gradient(rgba(198, 153, 99, 0.5), rgba(198, 153, 99, 0.5)), url(../img/back-small.jpg);
   background-size: cover; }
   @media only screen and (max-width: 50em) {
     .story__pictures {
       grid-column: 1/-1;
       padding: 3rem; } }
+  @media only screen and (min-width: 62.5em), (min-resolution: 192dpi) and (min-width: 50em) {
+    .story__pictures {
+      background-image: linear-gradient(rgba(198, 153, 99, 0.5), rgba(198, 153, 99, 0.5)), url(../img/back.jpg); } }
 
 .story__img--1 {
   width: 100%;
@@ -259,11 +359,15 @@ body {
   grid-row: 4/6;
   grid-column: 4/7;
   z-index: 20;
-  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
+  transition: all .3s;
+  backface-visibility: hidden; }
   @media only screen and (max-width: 50em) {
     .story__img--2 {
       grid-row: 1/-1;
       width: 100%; } }
+  .story__img--2:hover {
+    transform: scale(1.1); }
 
 .story__content {
   background-color: #f9f7f6;
@@ -294,7 +398,9 @@ body {
   width: 30rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-row-gap: 3.5rem; }
+  grid-row-gap: 3.5rem;
+  transition: all .2s;
+  backface-visibility: hidden; }
   .home__img {
     width: 100%;
     grid-row: 1/2;
@@ -338,6 +444,8 @@ body {
       margin-right: 1rem; }
   .home__btn {
     grid-column: 1/-1; }
+  .home:hover {
+    transform: scale(1.02); }
 
 .gallery {
   background-color: #f9f7f6;

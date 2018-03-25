@@ -1,7 +1,7 @@
 .header{
     background-color: $color-grey-dark-1;
     grid-column: full-start/col-end 6;
-    background-image: linear-gradient(rgba($color-secondary,.93),rgba($color-secondary,.93)),url(../img/hero.jpeg);
+    background-image: linear-gradient(rgba($color-secondary,.93),rgba($color-secondary,.93)),url(../img/hero-small.jpg);
     background-size: cover;
     background-position: center;
 
@@ -21,6 +21,11 @@
 
     @media only screen and (max-width: $bp-small){
         padding: 5rem;
+    }
+
+    @media only screen and (min-width: $bp-large),
+    (min-resolution: 192dpi) and (min-width:50em){
+        background-image: linear-gradient(rgba($color-secondary,.93),rgba($color-secondary,.93)),url(../img/hero.jpeg);
     }
 
     &__logo{
